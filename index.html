@@ -1,1 +1,423 @@
 
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff0f3">
+
+  <title>20/10 - Gửi những người phụ nữ thân yêu</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --rose: #b85172;
+      --pink: #dc829f;
+      --text: #624d56;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 60px 15px 35px;
+      font-family: Georgia, "Times New Roman", serif;
+      background: linear-gradient(
+        145deg,
+        #fffaf5 0%,
+        #ffe8ee 55%,
+        #fff4f5 100%
+      );
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* CÁNH HOA RƠI */
+
+    #petals {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .petal {
+      position: absolute;
+      top: -25px;
+      width: 12px;
+      height: 18px;
+      background: #eda8bb;
+      border-radius: 80% 0 80% 0;
+      opacity: 0.55;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(520deg);
+        opacity: 0;
+      }
+    }
+
+    /* THIỆP */
+
+    .card {
+      position: relative;
+      z-index: 1;
+      width: min(650px, 100%);
+      padding: 38px 32px;
+      background: rgba(255,255,255,0.97);
+      border: 1px solid #f4d6de;
+      border-radius: 26px;
+      box-shadow: 0 15px 45px rgba(170,85,115,0.12);
+      text-align: center;
+      animation: appear 0.8s ease;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .english {
+      font-family: Arial, sans-serif;
+      letter-spacing: 2.5px;
+      color: #bc8192;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .date {
+      margin: 9px 0 2px;
+      font-size: clamp(55px, 12vw, 82px);
+      line-height: 1.2;
+      font-weight: bold;
+      color: var(--rose);
+    }
+
+    .subheading {
+      margin: 0 0 24px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: #a96c81;
+    }
+
+    .flower-image {
+      display: block;
+      width: min(340px, 90%);
+      max-height: 310px;
+      margin: 5px auto 25px;
+      object-fit: contain;
+    }
+
+    .title {
+      color: var(--rose);
+      font-size: clamp(21px, 4.2vw, 29px);
+      line-height: 1.5;
+      margin: 15px auto 20px;
+      font-weight: bold;
+    }
+
+    .divider {
+      width: 85px;
+      height: 2px;
+      margin: 22px auto;
+      background: #e7b2c2;
+      border-radius: 10px;
+    }
+
+    .dear {
+      color: #a94b6b;
+      font-size: clamp(18px, 3.5vw, 21px);
+      font-weight: bold;
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+
+    .message {
+      font-size: 17px;
+      line-height: 1.95;
+      text-align: center;
+    }
+
+    .message p {
+      margin: 0 0 19px;
+    }
+
+    .signature {
+      margin-top: 25px;
+      color: var(--rose);
+      font-size: 18px;
+      font-style: italic;
+      font-weight: bold;
+    }
+
+    /* NÚT NHẠC */
+
+    #musicButton {
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 10;
+      padding: 11px 17px;
+      border: 1px solid #eab7c7;
+      border-radius: 28px;
+      background: #fff;
+      color: var(--rose);
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(170,85,115,0.12);
+    }
+
+    #musicStatus {
+      position: fixed;
+      top: 59px;
+      right: 14px;
+      z-index: 10;
+      width: min(280px, calc(100vw - 28px));
+      padding: 10px;
+      border-radius: 10px;
+      background: white;
+      color: var(--rose);
+      font: 12px/1.6 Arial, sans-serif;
+    }
+
+    #musicStatus[hidden] {
+      display: none;
+    }
+
+    /* ĐIỆN THOẠI */
+
+    @media (max-width: 600px) {
+      body {
+        padding: 68px 12px 24px;
+      }
+
+      .card {
+        padding: 28px 19px;
+      }
+
+      .message {
+        font-size: 16px;
+        line-height: 1.9;
+      }
+
+      .flower-image {
+        max-height: 245px;
+      }
+
+      .dear {
+        font-size: 18px;
+      }
+
+      .title {
+        font-size: 22px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .petal {
+        display: none;
+      }
+
+      .card {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HIỆU ỨNG HOA -->
+  <div id="petals" aria-hidden="true"></div>
+
+  <!-- NHẠC NỀN -->
+  <button id="musicButton" type="button">
+    Bật nhạc
+  </button>
+
+  <div id="musicStatus" role="status" hidden></div>
+
+  <!--
+    ĐẶT FILE music.mp3 CÙNG THƯ MỤC index.html
+  -->
+  <audio
+    id="backgroundMusic"
+    src="./music.mp3"
+    preload="none"
+    loop>
+  </audio>
+
+  <!-- THIỆP 20/10 DÀNH CHO GIA ĐÌNH -->
+
+  <main class="card" id="card">
+
+    <div class="english">
+      HAPPY VIETNAMESE WOMEN'S DAY
+    </div>
+
+    <div class="date">20/10</div>
+
+    <div class="subheading">
+      NGÀY PHỤ NỮ VIỆT NAM
+    </div>
+
+    <!--
+      THAY LINK ẢNH TẠI ĐÂY NẾU MUỐN DÙNG ẢNH KHÁC
+    -->
+    <img
+      class="flower-image"
+      src="./hoa-tulip.png"
+      alt="Đóa hoa tươi thắm gửi tặng gia đình">
+
+    <h1 class="title">
+      GỬI NGÀN YÊU THƯƠNG<br>
+      ĐONG ĐẦY NIỀM VUI
+    </h1>
+
+    <div class="divider"></div>
+
+    <div class="dear">
+      Gửi đến Mẹ, các dì và những người phụ nữ
+      thân yêu trong gia đình.
+    </div>
+
+    <div class="message">
+
+      <p>
+        Nhân ngày Phụ nữ Việt Nam 20/10,
+        gửi đến mọi người những lời chúc
+        thật nhiều yêu thương.
+        Cảm ơn Mẹ, các dì và các chị em
+        vì những tình cảm ấm áp,
+        sự quan tâm và những khoảnh khắc đẹp
+        mà cả nhà đã cùng nhau sẻ chia.
+      </p>
+
+      <p>
+        Chúc mọi người luôn mạnh khỏe,
+        vui vẻ, bình an và gặp nhiều may mắn.
+        Chúc những dự định đều thuận lợi,
+        cuộc sống có thêm nhiều niềm vui
+        và mỗi ngày đều ngập tràn tiếng cười.
+        Mong gia đình mình sẽ luôn có
+        thật nhiều dịp sum vầy
+        và lưu giữ thêm những kỷ niệm đẹp bên nhau.
+      </p>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="signature">
+      Thương gửi cả nhà mình.
+    </div>
+
+  </main>
+
+  <script>
+    "use strict";
+
+    // ====================================
+    // 1. NHẠC NỀN
+    // ====================================
+
+    const music = document.getElementById(
+      "backgroundMusic"
+    );
+
+    const musicButton = document.getElementById(
+      "musicButton"
+    );
+
+    const musicStatus = document.getElementById(
+      "musicStatus"
+    );
+
+    music.volume = 0.35;
+    music.loop = true;
+
+    musicButton.addEventListener("click", async () => {
+
+      if (!music.paused) {
+        music.pause();
+        musicButton.textContent = "Bật nhạc";
+        musicStatus.hidden = true;
+        return;
+      }
+
+      try {
+        await music.play();
+
+        musicButton.textContent = "Tắt nhạc";
+        musicStatus.hidden = true;
+
+      } catch (error) {
+        console.error("Lỗi phát nhạc:", error);
+
+        musicButton.textContent = "Bật nhạc";
+        musicStatus.textContent =
+          "Chưa phát được nhạc. Vui lòng kiểm tra file music.mp3 trên GitHub.";
+        musicStatus.hidden = false;
+      }
+
+    });
+
+    // ====================================
+    // 2. HIỆU ỨNG CÁNH HOA RƠI
+    // ====================================
+
+    function createPetal() {
+      if (document.hidden) return;
+
+      const petal = document.createElement("span");
+
+      petal.className = "petal";
+
+      petal.style.left =
+        Math.random() * 100 + "vw";
+
+      petal.style.animationDuration =
+        5 + Math.random() * 4 + "s";
+
+      document.getElementById("petals")
+        .appendChild(petal);
+
+      setTimeout(() => {
+        petal.remove();
+      }, 9500);
+    }
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (!reducedMotion) {
+      setInterval(createPetal, 450);
+    }
+
+  </script>
+
+</body>
+</html>
+
