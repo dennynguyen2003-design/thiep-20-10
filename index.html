@@ -6,17 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#fff0f3">
 
-  <title>20/10 - Gửi những người phụ nữ thân yêu</title>
+  <title>Thiệp 20/10 - Thương gửi gia đình mình</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     :root {
       --rose: #b85172;
-      --pink: #dc829f;
+      --pink: #d67e9b;
       --text: #624d56;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     html {
@@ -26,59 +26,64 @@
     body {
       margin: 0;
       min-height: 100vh;
-      padding: 60px 15px 35px;
+      padding: 65px 15px 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-family: Georgia, "Times New Roman", serif;
+      color: var(--text);
       background: linear-gradient(
         145deg,
         #fffaf5 0%,
         #ffe8ee 55%,
         #fff4f5 100%
       );
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
-    /* CÁNH HOA RƠI */
+    /* HIỆU ỨNG CÁNH HOA */
 
     #petals {
       position: fixed;
       inset: 0;
       z-index: 0;
-      pointer-events: none;
       overflow: hidden;
+      pointer-events: none;
     }
 
     .petal {
       position: absolute;
-      top: -25px;
+      top: -30px;
       width: 12px;
       height: 18px;
-      background: #eda8bb;
+      background: #eca5ba;
       border-radius: 80% 0 80% 0;
       opacity: 0.55;
-      animation: fall linear forwards;
+      animation: falling linear forwards;
     }
 
-    @keyframes fall {
+    @keyframes falling {
+      from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.55;
+      }
+
       to {
-        transform: translateY(110vh) rotate(520deg);
+        transform: translateY(110vh) rotate(540deg);
         opacity: 0;
       }
     }
 
-    /* THIỆP */
+    /* GIAO DIỆN THIỆP */
 
     .card {
       position: relative;
       z-index: 1;
-      width: min(650px, 100%);
-      padding: 38px 32px;
-      background: rgba(255,255,255,0.97);
+      width: min(680px, 100%);
+      padding: 42px 38px;
+      background: rgba(255, 255, 255, 0.97);
       border: 1px solid #f4d6de;
-      border-radius: 26px;
-      box-shadow: 0 15px 45px rgba(170,85,115,0.12);
+      border-radius: 28px;
+      box-shadow: 0 15px 45px rgba(170, 85, 115, 0.12);
       text-align: center;
       animation: appear 0.8s ease;
     }
@@ -96,28 +101,32 @@
     }
 
     .english {
+      color: #b77d90;
       font-family: Arial, sans-serif;
-      letter-spacing: 2.5px;
-      color: #bc8192;
       font-size: 11px;
-      font-weight: bold;
+      font-weight: 700;
+      letter-spacing: 2.2px;
+      line-height: 1.7;
     }
 
     .date {
-      margin: 9px 0 2px;
-      font-size: clamp(55px, 12vw, 82px);
-      line-height: 1.2;
-      font-weight: bold;
+      margin: 9px 0 0;
       color: var(--rose);
+      font-size: clamp(58px, 12vw, 85px);
+      font-weight: 700;
+      line-height: 1.2;
     }
 
     .subheading {
-      margin: 0 0 24px;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      letter-spacing: 2px;
+      margin: 0 0 25px;
       color: #a96c81;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
     }
+
+    /* HÌNH ẢNH HOA */
 
     .flower-image {
       display: block;
@@ -127,49 +136,109 @@
       object-fit: contain;
     }
 
-    .title {
+    .image-error {
+      display: none;
+      margin: 15px auto;
+      padding: 12px;
+      background: #fff0f4;
+      border-radius: 10px;
       color: var(--rose);
-      font-size: clamp(21px, 4.2vw, 29px);
-      line-height: 1.5;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* TIÊU ĐỀ */
+
+    .main-title {
       margin: 15px auto 20px;
-      font-weight: bold;
+      color: var(--rose);
+      font-size: clamp(21px, 4.2vw, 28px);
+      font-weight: 700;
+      line-height: 1.55;
     }
 
     .divider {
       width: 85px;
       height: 2px;
-      margin: 22px auto;
+      margin: 25px auto;
       background: #e7b2c2;
       border-radius: 10px;
     }
 
     .dear {
       color: #a94b6b;
-      font-size: clamp(18px, 3.5vw, 21px);
-      font-weight: bold;
-      line-height: 1.7;
-      margin-bottom: 22px;
+      font-size: clamp(17px, 3.5vw, 20px);
+      font-weight: 700;
+      line-height: 1.8;
+      overflow-wrap: anywhere;
     }
 
-    .message {
-      font-size: 17px;
+    .intro {
+      margin: 18px auto 26px;
+      font-size: 16px;
       line-height: 1.95;
+    }
+
+    /* BA PHẦN LỜI CHÚC */
+
+    .wish-section {
+      padding: 22px 20px;
+      margin: 20px 0;
+      background: #fff9fa;
+      border: 1px solid #f3dce4;
+      border-radius: 18px;
       text-align: center;
     }
 
-    .message p {
-      margin: 0 0 19px;
+    .wish-section.grandma {
+      background: #fff8f1;
+      border-color: #f0dcca;
+    }
+
+    .wish-section.mother {
+      background: #fff5f8;
+      border-color: #f1d6e0;
+    }
+
+    .wish-section.sisters {
+      background: #fff9fc;
+      border-color: #eddae8;
+    }
+
+    .wish-heading {
+      margin: 0 0 17px;
+      color: var(--rose);
+      font-size: clamp(17px, 3.2vw, 21px);
+      font-weight: 700;
+      line-height: 1.65;
+    }
+
+    .wish-section p {
+      margin: 0;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.95;
+    }
+
+    /* LỜI KẾT */
+
+    .ending {
+      margin: 27px auto 0;
+      font-size: 17px;
+      line-height: 1.95;
     }
 
     .signature {
       margin-top: 25px;
       color: var(--rose);
-      font-size: 18px;
+      font-size: 19px;
+      font-weight: 700;
       font-style: italic;
-      font-weight: bold;
+      line-height: 1.7;
     }
 
-    /* NÚT NHẠC */
+    /* NHẠC NỀN */
 
     #musicButton {
       position: fixed;
@@ -177,15 +246,24 @@
       right: 14px;
       z-index: 10;
       padding: 11px 17px;
+      background: #ffffff;
       border: 1px solid #eab7c7;
       border-radius: 28px;
-      background: #fff;
       color: var(--rose);
       font-family: Arial, sans-serif;
       font-size: 13px;
-      font-weight: bold;
+      font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 4px 16px rgba(170,85,115,0.12);
+      box-shadow: 0 4px 16px rgba(170, 85, 115, 0.12);
+    }
+
+    #musicButton:hover {
+      background: #fff1f5;
+    }
+
+    #musicButton:focus-visible {
+      outline: 3px solid #9e4165;
+      outline-offset: 3px;
     }
 
     #musicStatus {
@@ -195,42 +273,55 @@
       z-index: 10;
       width: min(280px, calc(100vw - 28px));
       padding: 10px;
-      border-radius: 10px;
       background: white;
+      border-radius: 10px;
       color: var(--rose);
-      font: 12px/1.6 Arial, sans-serif;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1.6;
+      box-shadow: 0 4px 16px rgba(170, 85, 115, 0.12);
     }
 
     #musicStatus[hidden] {
       display: none;
     }
 
-    /* ĐIỆN THOẠI */
+    /* RESPONSIVE - ĐIỆN THOẠI */
 
     @media (max-width: 600px) {
       body {
-        padding: 68px 12px 24px;
+        padding: 70px 12px 25px;
       }
 
       .card {
-        padding: 28px 19px;
-      }
-
-      .message {
-        font-size: 16px;
-        line-height: 1.9;
+        padding: 30px 18px;
+        border-radius: 22px;
       }
 
       .flower-image {
-        max-height: 245px;
+        max-height: 240px;
+      }
+
+      .wish-section {
+        padding: 20px 15px;
+      }
+
+      .wish-section p,
+      .intro {
+        font-size: 15.5px;
+        line-height: 1.9;
       }
 
       .dear {
-        font-size: 18px;
+        font-size: 17px;
       }
 
-      .title {
+      .main-title {
         font-size: 22px;
+      }
+
+      .ending {
+        font-size: 16px;
       }
     }
 
@@ -248,19 +339,22 @@
 
 <body>
 
-  <!-- HIỆU ỨNG HOA -->
+  <!-- HIỆU ỨNG CÁNH HOA -->
+
   <div id="petals" aria-hidden="true"></div>
 
   <!-- NHẠC NỀN -->
+
   <button id="musicButton" type="button">
     Bật nhạc
   </button>
 
-  <div id="musicStatus" role="status" hidden></div>
+  <div
+    id="musicStatus"
+    role="status"
+    hidden>
+  </div>
 
-  <!--
-    ĐẶT FILE music.mp3 CÙNG THƯ MỤC index.html
-  -->
   <audio
     id="backgroundMusic"
     src="./music.mp3"
@@ -270,67 +364,255 @@
 
   <!-- THIỆP 20/10 DÀNH CHO GIA ĐÌNH -->
 
-  <main class="card" id="card">
+  <main class="card">
+
+    <!-- PHẦN ĐẦU THIỆP -->
 
     <div class="english">
       HAPPY VIETNAMESE WOMEN'S DAY
     </div>
 
-    <div class="date">20/10</div>
+    <div class="date">
+      20/10
+    </div>
 
     <div class="subheading">
       NGÀY PHỤ NỮ VIỆT NAM
     </div>
 
-    <!--
-      THAY LINK ẢNH TẠI ĐÂY NẾU MUỐN DÙNG ẢNH KHÁC
-    -->
+    <!-- ẢNH HOA -->
+
     <img
+      id="flowerImage"
       class="flower-image"
       src="./hoa-tulip.png"
-      alt="Đóa hoa tươi thắm gửi tặng gia đình">
+      alt="Đóa hoa gửi tặng những người phụ nữ thân yêu"
+    >
 
-    <h1 class="title">
-      GỬI NGÀN YÊU THƯƠNG<br>
+    <div
+      class="image-error"
+      id="imageError"
+      role="status">
+      Không tải được ảnh hoa.
+      Vui lòng kiểm tra file hoa-tulip.png
+      trên GitHub.
+    </div>
+
+    <!-- TIÊU ĐỀ -->
+
+    <h1 class="main-title">
+      GỬI NGÀN YÊU THƯƠNG
+      <br>
       ĐONG ĐẦY NIỀM VUI
     </h1>
 
     <div class="divider"></div>
 
+    <!-- LỜI MỞ ĐẦU -->
+
     <div class="dear">
-      Gửi đến Mẹ, các dì và những người phụ nữ
-      thân yêu trong gia đình.
+      THƯƠNG GỬI ĐẾN BÀ NGOẠI, MẸ,
+      DÌ HỒNG, DÌ HẰNG, DÌ HIỀN,
+      DÌ HẠNH, DÌ ÚT, CÁC MỢ
+      VÀ CÁC CHỊ, EM CỦA GIA ĐÌNH MÌNH.
     </div>
 
-    <div class="message">
+    <p class="intro">
+      Nhân ngày Phụ nữ Việt Nam 20/10,
+      con muốn gửi đến những người phụ nữ
+      thân yêu trong gia đình mình
+      một món quà nhỏ cùng những lời chúc
+      thật chân thành.
+
+      <br><br>
+
+      Cảm ơn mọi người vì đã luôn dành cho
+      nhau những tình cảm ấm áp, sự quan tâm
+      và những khoảnh khắc thật đẹp.
+      Mong rằng ngày đặc biệt này sẽ mang đến
+      cho cả nhà thật nhiều niềm vui
+      và những nụ cười rạng rỡ.
+    </p>
+
+    <!-- =====================================
+         1. LỜI CHÚC RIÊNG BÀ NGOẠI
+    ====================================== -->
+
+    <section class="wish-section grandma">
+
+      <h2 class="wish-heading">
+        GỬI BÀ NGOẠI THƯƠNG YÊU
+      </h2>
 
       <p>
         Nhân ngày Phụ nữ Việt Nam 20/10,
-        gửi đến mọi người những lời chúc
-        thật nhiều yêu thương.
-        Cảm ơn Mẹ, các dì và các chị em
-        vì những tình cảm ấm áp,
-        sự quan tâm và những khoảnh khắc đẹp
-        mà cả nhà đã cùng nhau sẻ chia.
+        con chúc Bà ngoại của con
+        luôn dồi dào sức khỏe,
+        bình an và vui vẻ mỗi ngày.
+        Chúc Bà luôn ăn ngon, ngủ ngon,
+        tinh thần thoải mái và lúc nào
+        cũng có thật nhiều niềm vui.
+
+        <br><br>
+
+        Con mong Bà luôn khỏe mạnh,
+        vui vẻ, sống thật lâu bên con cháu
+        để cả nhà mình còn có thêm
+        thật nhiều dịp sum vầy,
+        cùng trò chuyện và lưu giữ
+        những kỷ niệm đẹp.
+
+        <br><br>
+
+        Chỉ mong Bà luôn bình an,
+        mỗi ngày đều thật vui,
+        có nhiều tiếng cười
+        và những phút giây ấm áp
+        bên gia đình mình.
+
+        <br><br>
+
+        Con chúc Bà ngoại một ngày 20/10
+        thật vui vẻ và hạnh phúc.
+        Con thương Bà nhiều lắm.
       </p>
+
+    </section>
+
+    <!-- =====================================
+         2. MẸ, CÁC DÌ VÀ CÁC MỢ
+    ====================================== -->
+
+    <section class="wish-section mother">
+
+      <h2 class="wish-heading">
+        GỬI MẸ, CÁC DÌ VÀ CÁC MỢ
+        THÂN YÊU
+      </h2>
 
       <p>
-        Chúc mọi người luôn mạnh khỏe,
-        vui vẻ, bình an và gặp nhiều may mắn.
-        Chúc những dự định đều thuận lợi,
-        cuộc sống có thêm nhiều niềm vui
-        và mỗi ngày đều ngập tràn tiếng cười.
-        Mong gia đình mình sẽ luôn có
-        thật nhiều dịp sum vầy
-        và lưu giữ thêm những kỷ niệm đẹp bên nhau.
+        Nhân ngày Phụ nữ Việt Nam 20/10,
+        con gửi đến Mẹ, Dì Hồng, Dì Hằng,
+        Dì Hiền, Dì Hạnh, Dì Út
+        và các mợ những lời chúc
+        thật chân thành và ấm áp.
+
+        <br><br>
+
+        Cảm ơn Mẹ, các dì và các mợ
+        vì những tình cảm yêu thương,
+        sự quan tâm và những điều tốt đẹp
+        mà mọi người đã dành cho gia đình mình.
+
+        <br><br>
+
+        Con chúc mọi người luôn mạnh khỏe,
+        bình an, vui vẻ và gặp thật nhiều
+        may mắn trong cuộc sống.
+        Chúc mỗi ngày đều có thêm
+        những niềm vui giản dị,
+        những phút giây thư thái
+        và thật nhiều tiếng cười.
+
+        <br><br>
+
+        Mong Mẹ, các dì và các mợ
+        luôn rạng rỡ, hạnh phúc,
+        có nhiều thời gian tận hưởng
+        những điều mình yêu thích
+        và thật nhiều dịp sum vầy
+        bên gia đình.
+
+        <br><br>
+
+        Chúc mọi người một ngày 20/10
+        thật vui, thật ấm áp
+        và luôn ngập tràn những điều tốt đẹp.
       </p>
 
-    </div>
+    </section>
+
+    <!-- =====================================
+         3. CÁC CHỊ EM TRONG GIA ĐÌNH
+    ====================================== -->
+
+    <section class="wish-section sisters">
+
+      <h2 class="wish-heading">
+        GỬI CÁC CHỊ EM XINH ĐẸP
+        CỦA GIA ĐÌNH MÌNH
+      </h2>
+
+      <p>
+        Và tất nhiên, không thể thiếu
+        những lời chúc thật dễ thương
+        dành cho các chị em xinh đẹp
+        của gia đình mình.
+
+        <br><br>
+
+        Nhân ngày 20/10,
+        chúc các chị em luôn xinh tươi,
+        rạng rỡ, tự tin
+        và giữ mãi nụ cười thật tươi.
+
+        <br><br>
+
+        Chúc mọi người thật nhiều
+        sức khỏe, niềm vui và may mắn.
+        Chúc công việc, học tập
+        luôn thuận lợi,
+        những kế hoạch và dự định
+        đều đạt được kết quả
+        như mong muốn.
+
+        <br><br>
+
+        Chúc các chị em ngày càng xinh đẹp,
+        có thêm nhiều trải nghiệm thú vị,
+        những chuyến đi đáng nhớ,
+        những món quà bất ngờ
+        và thật nhiều khoảnh khắc vui vẻ
+        bên những người thân yêu.
+
+        <br><br>
+
+        Mong chị em nhà mình
+        sẽ luôn vui vẻ, gắn bó,
+        cùng nhau chia sẻ thật nhiều
+        câu chuyện thú vị
+        và có thêm những kỷ niệm đẹp.
+
+        <br><br>
+
+        Chúc các chị em một ngày 20/10
+        thật rộn ràng, ngọt ngào,
+        đáng yêu và nhiều bất ngờ.
+      </p>
+
+    </section>
+
+    <!-- LỜI KẾT -->
 
     <div class="divider"></div>
 
+    <p class="ending">
+      Một ngày đặc biệt,
+      một món quà nhỏ cùng những lời chúc
+      thật chân thành gửi đến những
+      người phụ nữ thân yêu của gia đình mình.
+
+      <br><br>
+
+      Chúc cả nhà một ngày
+      Phụ nữ Việt Nam 20/10
+      thật vui vẻ, ấm áp,
+      tràn ngập tiếng cười
+      và những khoảnh khắc đáng nhớ.
+    </p>
+
     <div class="signature">
-      Thương gửi cả nhà mình.
+      Thương cả nhà mình thật nhiều.
     </div>
 
   </main>
@@ -339,7 +621,7 @@
     "use strict";
 
     // ====================================
-    // 1. NHẠC NỀN
+    // NHẠC NỀN
     // ====================================
 
     const music = document.getElementById(
@@ -357,34 +639,92 @@
     music.volume = 0.35;
     music.loop = true;
 
-    musicButton.addEventListener("click", async () => {
+    function showMusicError(message) {
+      musicStatus.textContent = message;
+      musicStatus.hidden = false;
+      musicButton.textContent = "Bật nhạc";
+    }
+
+    function hideMusicError() {
+      musicStatus.textContent = "";
+      musicStatus.hidden = true;
+    }
+
+    musicButton.addEventListener("click", () => {
 
       if (!music.paused) {
         music.pause();
         musicButton.textContent = "Bật nhạc";
-        musicStatus.hidden = true;
+        hideMusicError();
         return;
       }
 
-      try {
-        await music.play();
+      hideMusicError();
 
-        musicButton.textContent = "Tắt nhạc";
-        musicStatus.hidden = true;
+      const playPromise = music.play();
 
-      } catch (error) {
-        console.error("Lỗi phát nhạc:", error);
+      musicButton.textContent = "Đang bật nhạc...";
 
-        musicButton.textContent = "Bật nhạc";
-        musicStatus.textContent =
-          "Chưa phát được nhạc. Vui lòng kiểm tra file music.mp3 trên GitHub.";
-        musicStatus.hidden = false;
+      if (
+        playPromise &&
+        typeof playPromise.then === "function"
+      ) {
+        playPromise
+          .then(() => {
+            musicButton.textContent = "Tắt nhạc";
+            hideMusicError();
+          })
+          .catch((error) => {
+            console.error("Lỗi phát nhạc:", error);
+
+            if (error.name === "NotAllowedError") {
+              showMusicError(
+                "Trình duyệt chưa cho phép phát nhạc. Hãy thử bấm Bật nhạc lại nhé."
+              );
+            } else if (error.name === "NotSupportedError") {
+              showMusicError(
+                "Trình duyệt không đọc được file nhạc. Hãy kiểm tra định dạng MP3."
+              );
+            } else {
+              showMusicError(
+                "Không tải được nhạc. Hãy kiểm tra file music.mp3 trên GitHub."
+              );
+            }
+          });
       }
-
     });
 
     // ====================================
-    // 2. HIỆU ỨNG CÁNH HOA RƠI
+    // KIỂM TRA ẢNH HOA
+    // ====================================
+
+    const flowerImage = document.getElementById(
+      "flowerImage"
+    );
+
+    const imageError = document.getElementById(
+      "imageError"
+    );
+
+    function showImageError() {
+      flowerImage.style.display = "none";
+      imageError.style.display = "block";
+    }
+
+    flowerImage.addEventListener(
+      "error",
+      showImageError
+    );
+
+    if (
+      flowerImage.complete &&
+      flowerImage.naturalWidth === 0
+    ) {
+      showImageError();
+    }
+
+    // ====================================
+    // HIỆU ỨNG CÁNH HOA RƠI
     // ====================================
 
     function createPetal() {
@@ -420,4 +760,3 @@
 
 </body>
 </html>
-
